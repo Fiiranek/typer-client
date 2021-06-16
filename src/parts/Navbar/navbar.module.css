@@ -1,0 +1,24 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  background: #777;
+  color: white;
+  padding: 1rem 0;
+  font-size: 1.4rem;
+  padding-left: 2rem;
+}
+.navbar > *{
+  font-size: 1.4rem;
+  background: transparent;
+  border: none;
+  color: white;
+}
+.navbar > *:hover{
+  cursor: pointer;
+}
+.navbar a{
+    margin: 0 1rem;
+}
+a {
+  color: white;
+}
