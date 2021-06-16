@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/typer-client/static/css/main.b9b08d84.chunk.css",
+    "main.js": "/typer-client/static/js/main.ca360e63.chunk.js",
+    "main.js.map": "/typer-client/static/js/main.ca360e63.chunk.js.map",
+    "runtime-main.js": "/typer-client/static/js/runtime-main.2c8d6ab4.js",
+    "runtime-main.js.map": "/typer-client/static/js/runtime-main.2c8d6ab4.js.map",
+    "static/js/2.edfadc73.chunk.js": "/typer-client/static/js/2.edfadc73.chunk.js",
+    "static/js/2.edfadc73.chunk.js.map": "/typer-client/static/js/2.edfadc73.chunk.js.map",
+    "index.html": "/typer-client/index.html",
+    "static/css/main.b9b08d84.chunk.css.map": "/typer-client/static/css/main.b9b08d84.chunk.css.map",
+    "static/js/2.edfadc73.chunk.js.LICENSE.txt": "/typer-client/static/js/2.edfadc73.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2c8d6ab4.js",
+    "static/js/2.edfadc73.chunk.js",
+    "static/css/main.b9b08d84.chunk.css",
+    "static/js/main.ca360e63.chunk.js"
+  ]
+}
