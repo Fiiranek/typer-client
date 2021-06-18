@@ -32,6 +32,11 @@
   font-size: 2rem;
   max-width: 80px;
 }
+.inputs{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .actionBtn {
   width: 100%;
   background: white;

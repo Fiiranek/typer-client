@@ -2,7 +2,7 @@ import React, { Component, createRef } from 'react'
 import classes from '../MatchTile/matchTile.module.css'
 import { TokenContext } from '../../contexts/TokenContext'
 import { MESSAGE, COUNTRY_CODES, SERVER_URL, FLAG_SIZE } from '../../constans/constans'
-import {formatDate} from '../../utils/Utils'
+import { formatDate } from '../../utils/Utils'
 export class TypeTile extends Component {
     static contextType = TokenContext;
     constructor(props) {
@@ -74,7 +74,7 @@ export class TypeTile extends Component {
 
     addTypeSelect(props) {
         return (
-            <div>
+             <div className={classes.inputs}>
                 <input ref={this.team1Ref} onChange={e => this.change(e)} name="team1_goals" value={this.state.team1_goals} type="number" min={0} max={100} readOnly={this.state.isChangeDisabled} className={classes.scoreInput} />
                 <span className={classes.scoreInput} >&nbsp;:&nbsp;</span>
                 <input ref={this.team2Ref} onChange={e => this.change(e)} name="team2_goals" value={this.state.team2_goals} type="number" min={0} max={100} readOnly={this.state.isChangeDisabled} className={classes.scoreInput} />
@@ -90,11 +90,13 @@ export class TypeTile extends Component {
 
         const match = this.props.match;
         return (
-            <div className={classes.match}>
+            <div  className={classes.match}>
+                <span >Grupa {COUNTRY_CODES[match.team1].group}</span>
                 <div className={classes.matchHeader}>
-                    <img className={classes.flag} src={`https://www.countryflags.io/${COUNTRY_CODES[match.team1]}/flat/${FLAG_SIZE}.png`} alt="" />
+
+                    <img className={classes.flag} src={`https://www.countryflags.io/${COUNTRY_CODES[match.team1].code}/flat/${FLAG_SIZE}.png`} alt="" />
                     <span>&nbsp;-&nbsp;</span>
-                    <img className={classes.flag} src={`https://www.countryflags.io/${COUNTRY_CODES[match.team2]}/flat/${FLAG_SIZE}.png`} alt="" />
+                    <img className={classes.flag} src={`https://www.countryflags.io/${COUNTRY_CODES[match.team2].code}/flat/${FLAG_SIZE}.png`} alt="" />
                 </div>
                 <div className={classes.matchHeader}>
                     <span>{match.team1} </span>
