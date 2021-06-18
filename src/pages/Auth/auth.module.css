@@ -2,6 +2,42 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;    
+    justify-content: center; 
+    margin-top: 2rem;  
+    border-radius: var(--radius);
+    border: 2px solid var(--aqua); 
+    padding: 0;
+    padding-top: 1rem;
+}
+.logo{
+    width:8rem;
+    margin-bottom: 1rem;
+}
+input{
+    border-radius: var(--radius);
+    border: 2px solid var(--aqua); 
+    padding:0.5rem;
+    color: var(--aqua);
+    margin: 0.5rem 2rem;
+    font-weight: 500;
 }
 
+.actionBtn{
+    width: 100%;
+    background: var(--aqua);
+    margin-top: 1rem;
+    padding: 0.5rem 0;
+    font-weight: bold;
+    font-size: 1.2rem;
+   border: none;
+    border-top: none;
+    color: white;
+    transition: .4s;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.actionBtn:hover{
+    transition: .4s;
+    background: var(--darkAqua);
+    cursor: pointer;
+}

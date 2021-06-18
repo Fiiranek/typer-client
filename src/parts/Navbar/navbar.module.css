@@ -1,24 +1,37 @@
 .navbar {
   display: flex;
   align-items: center;
-  background: #777;
-  color: white;
+  /* background: #777; */
   padding: 1rem 0;
   font-size: 1.4rem;
   padding-left: 2rem;
+  background: var(--aqua);
 }
 .navbar > *{
   font-size: 1.4rem;
   background: transparent;
   border: none;
   color: white;
+  margin: 0 1rem;
+  font-weight: 500;
 }
 .navbar > *:hover{
   cursor: pointer;
 }
-.navbar a{
-    margin: 0 1rem;
+.logo{
+  height: 2rem;
 }
-a {
-  color: white;
+@media (max-width: 800px) {
+  .navbar{
+    padding-left: 0;
+    justify-content: space-around;
+  }
+  .navbar > *{
+    font-size: 1.1rem;
+    background: transparent;
+    border: none;
+    color: white;
+    margin: 0;
+    flex-wrap: wrap;
+  }
 }

@@ -1,7 +1,8 @@
 import React, { Component, createRef } from 'react'
-import classes from './typeTile.module.css'
+import classes from '../MatchTile/matchTile.module.css'
 import { TokenContext } from '../../contexts/TokenContext'
-import { MESSAGE ,COUNTRY_CODES} from '../../constans/constans'
+import { MESSAGE, COUNTRY_CODES, SERVER_URL, FLAG_SIZE } from '../../constans/constans'
+import {formatDate} from '../../utils/Utils'
 export class TypeTile extends Component {
     static contextType = TokenContext;
     constructor(props) {
@@ -16,10 +17,11 @@ export class TypeTile extends Component {
         }
         this.addTypeSelect = this.addTypeSelect.bind(this);
         this.change = this.change.bind(this);
+        this.getType = this.getType.bind(this);
     }
 
-    componentDidMount(props) {
-        fetch('/type', {
+    getType() {
+        fetch(`${SERVER_URL}/type`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -56,6 +58,11 @@ export class TypeTile extends Component {
 
 
             })
+            .catch(err => console.log(err))
+    }
+
+    componentDidMount(props) {
+        this.getType();
     }
 
     change(e) {
@@ -68,13 +75,38 @@ export class TypeTile extends Component {
     addTypeSelect(props) {
         return (
             <div>
-                <input ref={this.team1Ref} onChange={e => this.change(e)} name="team1_goals" value={this.state.team1_goals} type="number" min={0} max={100} readOnly={this.state.isChangeDisabled} />
-                <span>&nbsp;:&nbsp;</span>
-                <input ref={this.team2Ref} onChange={e => this.change(e)} name="team2_goals" value={this.state.team2_goals} type="number" min={0} max={100} readOnly={this.state.isChangeDisabled} />
+                <input ref={this.team1Ref} onChange={e => this.change(e)} name="team1_goals" value={this.state.team1_goals} type="number" min={0} max={100} readOnly={this.state.isChangeDisabled} className={classes.scoreInput} />
+                <span className={classes.scoreInput} >&nbsp;:&nbsp;</span>
+                <input ref={this.team2Ref} onChange={e => this.change(e)} name="team2_goals" value={this.state.team2_goals} type="number" min={0} max={100} readOnly={this.state.isChangeDisabled} className={classes.scoreInput} />
 
+
+            </div>
+
+        )
+
+    }
+
+    render(props) {
+
+        const match = this.props.match;
+        return (
+            <div className={classes.match}>
+                <div className={classes.matchHeader}>
+                    <img className={classes.flag} src={`https://www.countryflags.io/${COUNTRY_CODES[match.team1]}/flat/${FLAG_SIZE}.png`} alt="" />
+                    <span>&nbsp;-&nbsp;</span>
+                    <img className={classes.flag} src={`https://www.countryflags.io/${COUNTRY_CODES[match.team2]}/flat/${FLAG_SIZE}.png`} alt="" />
+                </div>
+                <div className={classes.matchHeader}>
+                    <span>{match.team1} </span>
+                    <span>&nbsp;-&nbsp;</span>
+                    <span> {match.team2}</span>
+                </div>
+                <span>{formatDate(match.date)}</span>
+                <span>{}</span>
+                {this.addTypeSelect()}
                 <button disabled={this.state.isChangeDisabled} onClick={() => {
                     if (!this.state.isChangeDisabled) {
-                        fetch(this.state.isType ? '/change-type' : '/add-type', {
+                        fetch(this.state.isType ? `${SERVER_URL}/change-type` : `${SERVER_URL}/add-type`, {
                             method: 'POST',
                             headers: {
                                 'Content-type': 'application/json'
@@ -96,37 +128,12 @@ export class TypeTile extends Component {
                             .then(res => res.json())
                             .then(data => {
                                 if (data.msg === MESSAGE.SUCCESS) {
-                                    //window.location.reload();
+                                    this.getType();
                                     alert('Changed type succesfuly!')
                                 }
                             })
                     }
-                }}>{this.state.type_id ? 'Zmień' : 'Dodaj'}</button>
-            </div>
-
-        )
-
-    }
-
-    render(props) {
-
-        const match = this.props.match;
-        return (
-            <div className={classes.match}>
-                <div className={classes.matchHeader}>
-                    <img src={`https://www.countryflags.io/${COUNTRY_CODES[match.team1]}/flat/32.png`} alt="" />
-                    <span>&nbsp;-&nbsp;</span>
-                    <img src={`https://www.countryflags.io/${COUNTRY_CODES[match.team2]}/flat/32.png`} alt="" />
-                </div>
-                <div className={classes.matchHeader}>
-                    <span>{match.team1} </span>
-                    <span>&nbsp;-&nbsp;</span>
-                    <span> {match.team2}</span>
-                </div>
-                <span>Data: {match.date}</span>
-                <span>{}</span>
-                {this.addTypeSelect()}
-
+                }} className={classes.actionBtn}>{this.state.type_id ? 'Zmień' : 'Dodaj'}</button>
             </div>
         )
     }

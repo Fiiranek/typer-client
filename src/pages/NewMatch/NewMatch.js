@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import classes from './newMatch.module.css';
-import { MESSAGE, COUNTRY_LIST } from '../../constans/constans'
+import { MESSAGE, COUNTRY_LIST, SERVER_URL } from '../../constans/constans'
 
 
 export class NewMatch extends Component {
@@ -23,7 +23,7 @@ export class NewMatch extends Component {
 
     submit(e) {
         e.preventDefault();
-        fetch('/new-match', {
+        fetch(`${SERVER_URL}/new-match`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'

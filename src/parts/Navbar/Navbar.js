@@ -3,6 +3,7 @@ import classes from './navbar.module.css';
 import { Link } from 'react-router-dom'
 import { TokenContext } from '../../contexts/TokenContext'
 import TokenManager from '../../token/TokenManager'
+import Logo from '../../assets/logo.png'
 export class Navbar extends Component {
     static contextType = TokenContext;
     constructor() {
@@ -17,16 +18,27 @@ export class Navbar extends Component {
     }
 
     render() {
-        if (this.context.user_id) {
+        if (this.context.user_id && this.context.isAdmin) {
             return (
                 <div className={classes.navbar}>
+                    {/*<img className={classes.logo} src={Logo} alt=""/>*/}
                     <Link to="/">Home</Link>
-                    <Link to="/types">Twoj typy</Link>
+                    <Link to="/types">Typy</Link>
                     <Link to="/matches">Mecze</Link>
                     <Link to="/table">Tabela</Link>
                     <Link to="/new-match">Dodaj mecz</Link>
+                    <button onClick={this.logout}>Wyloguj</button>
+                </div>
+            )
+        }
+        else if (this.context.user_id && !this.context.isAdmin) {
+            return (
+                <div className={classes.navbar}>
+                    <Link to="/">Home</Link>
+                    <Link to="/types">Typy</Link>
                     <Link to="/matches">Mecze</Link>
-                    <button  onClick={this.logout}>Wyloguj</button>
+                    <Link to="/table">Tabela</Link>
+                    <button onClick={this.logout}>Wyloguj</button>
                 </div>
             )
         }

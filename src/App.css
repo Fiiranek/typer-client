@@ -1,0 +1,13 @@
+:root{
+    --aqua:#1a99ac;
+    --darkAqua:#167f8f;
+    --radius:10px;
+}
+*:focus{
+    outline: none;
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import classes from './table.module.css';
 import TableRow from './TableRow'
+import { SERVER_URL } from '../../constans/constans';
 export class Table extends Component {
 
     constructor() {
@@ -13,7 +14,7 @@ export class Table extends Component {
     }
 
     componentDidMount() {
-        fetch('/table')
+        fetch(`${SERVER_URL}/table`)
             .then(res => res.json())
             .then(data => {
                 const usersMsg = data.filter(e => e.users)[0];

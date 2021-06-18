@@ -11,6 +11,7 @@ import NewMatch from './pages/NewMatch/NewMatch'
 import Types from './pages/Types/Types'
 import Matches from './pages/Matches/Matches'
 import Table from './pages/Table/Table'
+import classes from './app.module.css'
 function App() {
 
   return (
@@ -19,16 +20,20 @@ function App() {
       <Router>
         <div className="App">
           <Navbar />
-          <Switch>
-            <Route path="/table" component={() => <Table />} />
-            <Route path="/matches" component={() => <Matches />} />
-            <Route path="/types" component={() => <Types />} />
-            <Route path="/new-match" component={() => <NewMatch />} />
-            <Route path="/register" component={() => <Register />} />
-            <Route path="/login" component={() => <Login />} />
-            <Route path="/" component={() => <Home />} />
+          <div className={classes.main}>
 
-          </Switch>
+
+            <Switch>
+              <Route path="/table" component={() => <Table />} />
+              <Route path="/matches" component={() => <Matches />} />
+              <Route path="/types" component={() => <Types />} />
+              <Route path="/new-match" component={() => <NewMatch />} />
+              <Route path="/register" component={() => <Register />} />
+              <Route path="/login" component={() => <Login />} />
+              <Route path="/" component={() => <Home />} />
+
+            </Switch>
+          </div>
         </div>
       </Router>
     </TokenContextProvider>
